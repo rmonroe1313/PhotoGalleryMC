@@ -1,0 +1,44 @@
+﻿@model List<string>
+@{
+    ViewData["Title"] = "Image Gallery";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4">
+            <form method="post" asp-action="Upload" enctype="multipart/form-data">
+                <h2>Image Gallery</h2>
+                <div class="form-group">
+                    <label class="control-label" for="file">Select File</label>
+                    <input type="file" id="file" name="selectFile" accept="image/gif, image/png, image/jpeg" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="glyphicon-upload" value="Upload" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        @if (Model != null && Model.Count > 0)
+        {
+
+            @foreach (var imageUrl in Model)
+            {
+                <div class="col-md-2">
+             
+                        <a href="@imageUrl" class="thumbnail">
+                            <img src="@imageUrl" width="600" />
+                        </a>
+
+                </div>
+            }
+
+        }
+        else
+        {
+            < h1 > No images to display.</ h1 >
+        }
+    </div>
+</div>
